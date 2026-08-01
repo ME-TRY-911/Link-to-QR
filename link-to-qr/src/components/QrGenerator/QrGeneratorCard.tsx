@@ -140,6 +140,56 @@ export const QrGeneratorCard: React.FC<QrGeneratorCardProps> = ({ onOpenScanModa
     setTimeout(() => setToastMessage(null), 3000);
   };
 
+  // Load tab from URL hash on mount & update SEO metadata on tab change
+  useEffect(() => {
+    const hash = window.location.hash.replace('#', '') as QrType;
+    const validTypes: QrType[] = ['url', 'text', 'wifi', 'email', 'phone', 'sms', 'vcard', 'event', 'appstore', 'pdf'];
+    if (hash && validTypes.includes(hash)) {
+      setConfig((prev) => ({ ...prev, type: hash }));
+    }
+  }, []);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    
+    const titles: Record<QrType, string> = {
+      url: 'Free Link & URL QR Code Generator with Logo | Link to QR',
+      wifi: 'Free WiFi QR Code Generator with Password & Logo | Link to QR',
+      vcard: 'Free vCard & Business Card QR Code Generator | Link to QR',
+      email: 'Free Email QR Code Generator with Subject | Link to QR',
+      phone: 'Free Phone Call QR Code Generator | Link to QR',
+      sms: 'Free SMS Text Message QR Code Generator | Link to QR',
+      event: 'Free Event & Calendar Invite QR Code Generator | Link to QR',
+      appstore: 'Free App Store & Play Store QR Code Generator | Link to QR',
+      pdf: 'Free PDF Document QR Code Generator with Logo | Link to QR',
+      text: 'Free Plain Text QR Code Generator | Link to QR',
+    };
+
+    const descriptions: Record<QrType, string> = {
+      url: 'Create custom URL QR codes for websites and links. Add your logo, colors, frames, and download in vector SVG or PNG.',
+      wifi: 'Generate free WiFi QR codes. Share network SSID and password instantly without typing. Custom colors & vector SVG output.',
+      vcard: 'Create digital business card QR codes (vCard). Share contact info, phone, email, and company details instantly.',
+      email: 'Generate pre-filled email QR codes with recipient address, subject, and body text for instant email launching.',
+      phone: 'Create click-to-call phone QR codes. Help customers dial your business number instantly with a single scan.',
+      sms: 'Generate SMS QR codes with pre-filled phone numbers and custom text messages for easy mobile customer engagement.',
+      event: 'Create event calendar QR codes. Let attendees add dates, locations, and descriptions directly to Google & Apple Calendar.',
+      appstore: 'Create smart App Store QR codes that route iOS & Android users to download your mobile application.',
+      pdf: 'Convert PDF documents into scannable QR codes. Share digital catalogs, menus, and guides easily.',
+      text: 'Generate secure plain text QR codes for notes, keys, or instructions with customizable vector styling.',
+    };
+
+    document.title = titles[config.type] || 'Link to QR - Free Custom QR Code Generator with Logo & SVG';
+    
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) {
+      metaDesc.setAttribute('content', descriptions[config.type] || 'Generate customizable, high-resolution QR codes for free.');
+    }
+
+    if (window.location.hash !== `#${config.type}`) {
+      window.history.replaceState(null, '', `#${config.type}`);
+    }
+  }, [config.type]);
+
   // Generate QR Canvas with custom rendering engine
   useEffect(() => {
     if (!canvasRef.current) return;
@@ -669,14 +719,14 @@ export const QrGeneratorCard: React.FC<QrGeneratorCardProps> = ({ onOpenScanModa
 
                   <button
                     type="button"
-                    onClick={() => updateConfig({ logo: '/logo.png' })}
+                    onClick={() => updateConfig({ logo: 'https://res.cloudinary.com/u7k7ngbi/image/upload/f_auto,q_auto/WhatsApp_Image_2026-07-31_at_2.57.49_PM_yagerg' })}
                     className={`px-3 py-2 rounded-xl text-xs font-semibold border transition-all cursor-pointer flex items-center gap-1.5 ${
-                      config.logo === '/logo.png'
+                      config.logo === 'https://res.cloudinary.com/u7k7ngbi/image/upload/f_auto,q_auto/WhatsApp_Image_2026-07-31_at_2.57.49_PM_yagerg'
                         ? 'bg-indigo-600 text-white border-indigo-600 shadow-xs'
                         : 'border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:border-indigo-300'
                     }`}
                   >
-                    <img src="/logo.png" alt="Link to QR Logo" className="w-4 h-4 object-contain rounded-xs" referrerPolicy="no-referrer" />
+                    <img src="https://res.cloudinary.com/u7k7ngbi/image/upload/f_auto,q_auto/WhatsApp_Image_2026-07-31_at_2.57.49_PM_yagerg" alt="Link to QR Logo" className="w-4 h-4 object-cover rounded-xs" referrerPolicy="no-referrer" />
                     <span>Link to QR Logo</span>
                   </button>
 
