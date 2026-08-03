@@ -107,7 +107,7 @@ export async function renderQrToCanvas(
 
   // Generate QR matrix using QRCode.create (enforce 'H' when logo is present for scannability)
   const ecl = config.logo ? 'H' : (config.errorCorrectionLevel || 'M');
-  const qr = QRCode.create(payload || 'https://linktoqr.com', {
+  const qr = QRCode.create(payload || 'https://linktoqr.in', {
     errorCorrectionLevel: ecl,
   });
 
