@@ -80,7 +80,7 @@ export function generateQrPayload(config: QrConfig): string {
     }
 
     case 'pdf': {
-      return config.pdfUrl || 'https://linktoqr.com/doc/sample-presentation.pdf';
+      return config.pdfUrl || 'https://linktoqr.in/doc/sample-presentation.pdf';
     }
 
     default:
