@@ -6,6 +6,10 @@ import {
 } from '../../types';
 import { generateQrPayload } from '../../utils/qrEncoder';
 import { renderQrToCanvas, convertGoogleDriveUrl } from '../../utils/qrRenderer';
+import { 
+  saveDraftConfigCache, loadDraftConfigCache, saveToHistoryCache, 
+  createQrCacheKey, getCachedQrDataUrl, setCachedQrDataUrl 
+} from '../../utils/cacheManager';
 import { TypeForms } from './TypeForms';
 import { saveQrCodeToFirestore } from '../../lib/firebase';
 import { 
@@ -99,40 +103,48 @@ export const QrGeneratorCard: React.FC<QrGeneratorCardProps> = ({ onOpenScanModa
   const [saveSuccess, setSaveSuccess] = useState<boolean>(false);
   const [isCustomizeOpen, setIsCustomizeOpen] = useState<boolean>(false);
 
-  const [config, setConfig] = useState<QrConfig>({
-    type: 'url',
-    url: 'https://linktoqr.com',
-    text: 'Welcome to Link to QR',
-    wifi: { ssid: 'Guest_WiFi_5G', password: 'securepassword123', encryption: 'WPA', hidden: false },
-    vcard: { firstName: '', lastName: '', organization: '', title: '', mobile: '', email: '', website: '', address: '' },
-    email: { address: 'hello@linktoqr.com', subject: 'Inquiry from QR Code', body: 'Hi team, I would like to get more information...' },
-    phone: '+1 555-019-2834',
-    sms: { phone: '+1 555-019-2834', message: 'Hi! Let\'s connect.' },
-    event: { title: 'SaaS Summit 2026', location: 'San Francisco, CA', startDate: '2026-09-15T09:00', endDate: '2026-09-15T17:00', description: 'Annual SaaS Conference' },
-    appstore: { iosUrl: 'https://apps.apple.com/app/id123456789', androidUrl: 'https://play.google.com/store/apps/details?id=com.app' },
-    pdfName: 'Company-Overview-2026.pdf',
-    pdfUrl: 'https://linktoqr.com/doc/company-overview.pdf',
-    // Customization & Styles
-    dotStyle: 'rounded',
-    eyeStyle: 'rounded',
-    frameStyle: 'none',
-    frameText: 'SCAN ME',
-    gradientFg: false,
-    fgColor: '#0f172a',
-    fgColorEnd: '#6366f1',
-    bgColor: '#ffffff',
-    transparentBg: false,
-    logo: null,
-    errorCorrectionLevel: 'H',
-    size: 1024,
-    isDynamic: false,
+  const [config, setConfig] = useState<QrConfig>(() => {
+    const cachedDraft = loadDraftConfigCache();
+    if (cachedDraft) return cachedDraft;
+    return {
+      type: 'url',
+      url: 'https://linktoqr.com',
+      text: 'Welcome to Link to QR',
+      wifi: { ssid: 'Guest_WiFi_5G', password: 'securepassword123', encryption: 'WPA', hidden: false },
+      vcard: { firstName: '', lastName: '', organization: '', title: '', mobile: '', email: '', website: '', address: '' },
+      email: { address: 'hello@linktoqr.com', subject: 'Inquiry from QR Code', body: 'Hi team, I would like to get more information...' },
+      phone: '+1 555-019-2834',
+      sms: { phone: '+1 555-019-2834', message: 'Hi! Let\'s connect.' },
+      event: { title: 'SaaS Summit 2026', location: 'San Francisco, CA', startDate: '2026-09-15T09:00', endDate: '2026-09-15T17:00', description: 'Annual SaaS Conference' },
+      appstore: { iosUrl: 'https://apps.apple.com/app/id123456789', androidUrl: 'https://play.google.com/store/apps/details?id=com.app' },
+      pdfName: 'Company-Overview-2026.pdf',
+      pdfUrl: 'https://linktoqr.com/doc/company-overview.pdf',
+      // Customization & Styles
+      dotStyle: 'rounded',
+      eyeStyle: 'rounded',
+      frameStyle: 'none',
+      frameText: 'SCAN ME',
+      gradientFg: false,
+      fgColor: '#0f172a',
+      fgColorEnd: '#6366f1',
+      bgColor: '#ffffff',
+      transparentBg: false,
+      logo: null,
+      errorCorrectionLevel: 'H',
+      size: 1024,
+      isDynamic: false,
+    };
   });
 
   const [copied, setCopied] = useState<boolean>(false);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
   const updateConfig = (updated: Partial<QrConfig>) => {
-    setConfig((prev) => ({ ...prev, ...updated }));
+    setConfig((prev) => {
+      const next = { ...prev, ...updated };
+      saveDraftConfigCache(next);
+      return next;
+    });
   };
 
   const showToast = (msg: string) => {
@@ -232,6 +244,15 @@ export const QrGeneratorCard: React.FC<QrGeneratorCardProps> = ({ onOpenScanModa
     link.download = `linktoqr-${config.type}-${Date.now()}.png`;
     link.href = dataUrl;
     link.click();
+
+    // Cache generated QR in history cache
+    saveToHistoryCache({
+      title: `${config.type.toUpperCase()} QR Code`,
+      type: config.type,
+      dataUrl,
+      payload,
+      config,
+    });
 
     triggerConfetti();
     showToast(`PNG Downloaded (${config.size}x${config.size}px High Res)`);
