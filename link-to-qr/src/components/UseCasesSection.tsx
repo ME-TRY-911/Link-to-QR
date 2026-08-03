@@ -23,7 +23,7 @@ export const UseCasesSection: React.FC<UseCasesSectionProps> = () => {
         'Physical office visitor management',
         'SaaS app onboarding deep links',
       ],
-      previewUrl: 'https://linktoqr.com/vcard/alex-morgan',
+      previewUrl: 'https://linktoqr.in/vcard/alex-morgan',
     },
     {
       id: 'marketing',
@@ -36,7 +36,7 @@ export const UseCasesSection: React.FC<UseCasesSectionProps> = () => {
         'Discount coupon downloads',
         'A/B test advertising creatives',
       ],
-      previewUrl: 'https://linktoqr.com/promo/summer-sale',
+      previewUrl: 'https://linktoqr.in/promo/summer-sale',
     },
     {
       id: 'restaurant',
@@ -49,7 +49,7 @@ export const UseCasesSection: React.FC<UseCasesSectionProps> = () => {
         'Direct table ordering & contactless payment',
         'Google Review prompt link',
       ],
-      previewUrl: 'https://linktoqr.com/menu/bistro-san-francisco.pdf',
+      previewUrl: 'https://linktoqr.in/menu/bistro-san-francisco.pdf',
     },
     {
       id: 'events',
@@ -62,7 +62,7 @@ export const UseCasesSection: React.FC<UseCasesSectionProps> = () => {
         'Contactless badge scanning',
         'RSVP response collection',
       ],
-      previewUrl: 'https://linktoqr.com/event/saas-summit-2026',
+      previewUrl: 'https://linktoqr.in/event/saas-summit-2026',
     },
     {
       id: 'education',
@@ -75,7 +75,7 @@ export const UseCasesSection: React.FC<UseCasesSectionProps> = () => {
         'Student attendance logging',
         'Campus map navigation',
       ],
-      previewUrl: 'https://linktoqr.com/edu/cs101-syllabus',
+      previewUrl: 'https://linktoqr.in/edu/cs101-syllabus',
     },
     {
       id: 'social',
@@ -88,7 +88,7 @@ export const UseCasesSection: React.FC<UseCasesSectionProps> = () => {
         'Spotify playlist & podcast sharing',
         'Custom brand styling matching feed',
       ],
-      previewUrl: 'https://linktoqr.com/bio/alexcreator',
+      previewUrl: 'https://linktoqr.in/bio/alexcreator',
     },
   ];
 
