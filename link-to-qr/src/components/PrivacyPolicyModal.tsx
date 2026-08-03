@@ -150,7 +150,7 @@ export const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({
                   5. Your Rights & Data Deletion
                 </h4>
                 <p className="text-slate-600 dark:text-slate-400">
-                  You retain complete control over your data. You can delete individual saved QR codes from your User Dashboard at any time. To request full account and data erasure, contact us at <strong>privacy@linktoqr.com</strong>.
+                  You retain complete control over your data. You can delete individual saved QR codes from your User Dashboard at any time. To request full account and data erasure, contact us at <strong>privacy@linktoqr.in</strong>.
                 </p>
               </div>
 
@@ -217,7 +217,7 @@ export const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({
                   5. Contact Information
                 </h4>
                 <p className="text-slate-600 dark:text-slate-400">
-                  For legal inquiries or terms clarification, please email <strong>legal@linktoqr.com</strong>.
+                  For legal inquiries or terms clarification, please email <strong>legal@linktoqr.in</strong>.
                 </p>
               </div>
 
