@@ -1,5 +1,6 @@
 import QRCode from 'qrcode';
 import { QrConfig } from '../types';
+import { getCachedImage } from './cacheManager';
 
 /**
  * Helper to draw rounded rectangle with cross-browser safety fallback
@@ -292,86 +293,63 @@ export async function renderQrToCanvas(
   // 3. Draw Center Logo Overlay if present
   // -------------------------------------------------------------
   if (config.logo) {
-    await new Promise<void>((resolve) => {
-      const convertedUrl = convertGoogleDriveUrl(config.logo!);
-      const logoImg = new Image();
-      let triedWithoutCors = false;
+    const convertedUrl = convertGoogleDriveUrl(config.logo);
+    const logoImg = await getCachedImage(convertedUrl);
+    
+    if (logoImg) {
+      const sizePercent = Math.min(Math.max(config.logoSizePercent || 22, 10), 35);
+      const badgeSize = qrDimension * (sizePercent / 100);
+      const badgeX = startX + (qrDimension - badgeSize) / 2;
+      const badgeY = startY + (qrDimension - badgeSize) / 2;
+      const shape = config.logoShape || 'rounded';
 
-      logoImg.crossOrigin = 'anonymous';
+      ctx.save();
 
-      logoImg.onload = () => {
-        const sizePercent = Math.min(Math.max(config.logoSizePercent || 22, 10), 35);
-        const badgeSize = qrDimension * (sizePercent / 100);
-        const badgeX = startX + (qrDimension - badgeSize) / 2;
-        const badgeY = startY + (qrDimension - badgeSize) / 2;
-        const shape = config.logoShape || 'rounded';
+      if (shape !== 'none') {
+        // Draw badge background
+        ctx.fillStyle = bgColor === '#00000000' ? '#ffffff' : bgColor;
+        pathBadgeShape(ctx, badgeX, badgeY, badgeSize, shape);
+        ctx.fill();
 
-        ctx.save();
-
-        if (shape !== 'none') {
-          // Draw badge background
-          ctx.fillStyle = bgColor === '#00000000' ? '#ffffff' : bgColor;
-          pathBadgeShape(ctx, badgeX, badgeY, badgeSize, shape);
-          ctx.fill();
-
-          // Draw badge border
-          ctx.lineWidth = Math.max(2, qrDimension * 0.005);
-          ctx.strokeStyle = typeof fgStyle === 'string' ? fgStyle : config.fgColor;
-          ctx.stroke();
-        }
-
-        // Determine image dimensions with aspect ratio preservation (reduced inner padding for clearer display)
-        const innerPadding = shape === 'none' ? 0 : badgeSize * 0.08;
-        const maxImgDim = badgeSize - innerPadding * 2;
-        let imgW = maxImgDim;
-        let imgH = maxImgDim;
-
-        if (logoImg.width > 0 && logoImg.height > 0) {
-          const aspect = logoImg.width / logoImg.height;
-          if (aspect > 1) {
-            imgH = maxImgDim / aspect;
-          } else {
-            imgW = maxImgDim * aspect;
-          }
-        }
-
-        const imgX = badgeX + (badgeSize - imgW) / 2;
-        const imgY = badgeY + (badgeSize - imgH) / 2;
-
-        // Clip image inside badge bounds
-        if (shape !== 'none') {
-          ctx.save();
-          pathBadgeShape(ctx, badgeX + 1, badgeY + 1, badgeSize - 2, shape);
-          ctx.clip();
-        }
-
-        ctx.drawImage(logoImg, imgX, imgY, imgW, imgH);
-
-        if (shape !== 'none') {
-          ctx.restore();
-        }
-
-        ctx.restore();
-        resolve();
-      };
-
-      logoImg.onerror = () => {
-        if (!triedWithoutCors) {
-          triedWithoutCors = true;
-          // Retry without crossOrigin attribute so non-CORS images can still be drawn on canvas
-          logoImg.removeAttribute('crossOrigin');
-          logoImg.src = convertedUrl;
-        } else {
-          resolve(); // proceed gracefully if logo fails
-        }
-      };
-
-      if (convertedUrl) {
-        logoImg.src = convertedUrl;
-      } else {
-        resolve();
+        // Draw badge border
+        ctx.lineWidth = Math.max(2, qrDimension * 0.005);
+        ctx.strokeStyle = typeof fgStyle === 'string' ? fgStyle : config.fgColor;
+        ctx.stroke();
       }
-    });
+
+      // Determine image dimensions with aspect ratio preservation
+      const innerPadding = shape === 'none' ? 0 : badgeSize * 0.08;
+      const maxImgDim = badgeSize - innerPadding * 2;
+      let imgW = maxImgDim;
+      let imgH = maxImgDim;
+
+      if (logoImg.width > 0 && logoImg.height > 0) {
+        const aspect = logoImg.width / logoImg.height;
+        if (aspect > 1) {
+          imgH = maxImgDim / aspect;
+        } else {
+          imgW = maxImgDim * aspect;
+        }
+      }
+
+      const imgX = badgeX + (badgeSize - imgW) / 2;
+      const imgY = badgeY + (badgeSize - imgH) / 2;
+
+      // Clip image inside badge bounds
+      if (shape !== 'none') {
+        ctx.save();
+        pathBadgeShape(ctx, badgeX + 1, badgeY + 1, badgeSize - 2, shape);
+        ctx.clip();
+      }
+
+      ctx.drawImage(logoImg, imgX, imgY, imgW, imgH);
+
+      if (shape !== 'none') {
+        ctx.restore();
+      }
+
+      ctx.restore();
+    }
   }
 
   // -------------------------------------------------------------
