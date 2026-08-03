@@ -16,7 +16,7 @@ export const ScannerModal: React.FC<ScannerModalProps> = ({
   const [scanning, setScanning] = useState(false);
   const [customInput, setCustomInput] = useState('');
   const [activePayload, setActivePayload] = useState<string>(
-    scannedPayload || 'https://linktoqr.com'
+    scannedPayload || 'https://linktoqr.in'
   );
 
   if (!isOpen) return null;
@@ -25,7 +25,7 @@ export const ScannerModal: React.FC<ScannerModalProps> = ({
     setScanning(true);
     setTimeout(() => {
       setScanning(false);
-      setActivePayload(customInput || 'https://linktoqr.com/sample-scanned-content');
+      setActivePayload(customInput || 'https://linktoqr.in/sample-scanned-content');
     }, 1200);
   };
 
