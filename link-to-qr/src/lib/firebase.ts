@@ -112,7 +112,7 @@ export async function syncUserProfile(firebaseUser: FirebaseUser, customName?: s
       return {
         id: firebaseUser.uid,
         name: data.name || fallbackName,
-        email: firebaseUser.email || data.email || 'user@linktoqr.com',
+        email: firebaseUser.email || data.email || 'user@linktoqr.in',
         avatar: data.avatar || avatarUrl,
         plan: data.plan || 'Pro',
         createdAt: data.createdAt || new Date().toISOString().split('T')[0],
@@ -121,7 +121,7 @@ export async function syncUserProfile(firebaseUser: FirebaseUser, customName?: s
       const newUser: User = {
         id: firebaseUser.uid,
         name: fallbackName,
-        email: firebaseUser.email || 'user@linktoqr.com',
+        email: firebaseUser.email || 'user@linktoqr.in',
         avatar: avatarUrl,
         plan: 'Pro',
         createdAt: new Date().toISOString().split('T')[0],
