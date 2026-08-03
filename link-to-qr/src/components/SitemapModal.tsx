@@ -7,22 +7,22 @@ interface SitemapModalProps {
 }
 
 const SITEMAP_URLS = [
-  { loc: 'https://linktoqr.com/', title: 'Homepage & Core Generator', priority: '1.0', changefreq: 'daily', type: 'Main' },
-  { loc: 'https://linktoqr.com/#url', title: 'URL & Website QR Generator', priority: '0.9', changefreq: 'weekly', type: 'Tool' },
-  { loc: 'https://linktoqr.com/#wifi', title: 'WiFi Network QR Generator', priority: '0.9', changefreq: 'weekly', type: 'Tool' },
-  { loc: 'https://linktoqr.com/#vcard', title: 'vCard Digital Business Card QR', priority: '0.9', changefreq: 'weekly', type: 'Tool' },
-  { loc: 'https://linktoqr.com/#text', title: 'Plain Text QR Generator', priority: '0.8', changefreq: 'weekly', type: 'Tool' },
-  { loc: 'https://linktoqr.com/#email', title: 'Email QR Generator with Subject', priority: '0.8', changefreq: 'weekly', type: 'Tool' },
-  { loc: 'https://linktoqr.com/#phone', title: 'Click-to-Call Phone Number QR', priority: '0.8', changefreq: 'weekly', type: 'Tool' },
-  { loc: 'https://linktoqr.com/#sms', title: 'SMS Message QR Generator', priority: '0.8', changefreq: 'weekly', type: 'Tool' },
-  { loc: 'https://linktoqr.com/#event', title: 'iCal Meeting & Event QR', priority: '0.8', changefreq: 'weekly', type: 'Tool' },
-  { loc: 'https://linktoqr.com/#appstore', title: 'App Store & Play Store QR', priority: '0.8', changefreq: 'weekly', type: 'Tool' },
-  { loc: 'https://linktoqr.com/#pdf', title: 'PDF & Document Sharing QR', priority: '0.8', changefreq: 'weekly', type: 'Tool' },
+  { loc: 'https://linktoqr.in/', title: 'Homepage & Core Generator', priority: '1.0', changefreq: 'daily', type: 'Main' },
+  { loc: 'https://linktoqr.in/#url', title: 'URL & Website QR Generator', priority: '0.9', changefreq: 'weekly', type: 'Tool' },
+  { loc: 'https://linktoqr.in/#wifi', title: 'WiFi Network QR Generator', priority: '0.9', changefreq: 'weekly', type: 'Tool' },
+  { loc: 'https://linktoqr.in/#vcard', title: 'vCard Digital Business Card QR', priority: '0.9', changefreq: 'weekly', type: 'Tool' },
+  { loc: 'https://linktoqr.in/#text', title: 'Plain Text QR Generator', priority: '0.8', changefreq: 'weekly', type: 'Tool' },
+  { loc: 'https://linktoqr.in/#email', title: 'Email QR Generator with Subject', priority: '0.8', changefreq: 'weekly', type: 'Tool' },
+  { loc: 'https://linktoqr.in/#phone', title: 'Click-to-Call Phone Number QR', priority: '0.8', changefreq: 'weekly', type: 'Tool' },
+  { loc: 'https://linktoqr.in/#sms', title: 'SMS Message QR Generator', priority: '0.8', changefreq: 'weekly', type: 'Tool' },
+  { loc: 'https://linktoqr.in/#event', title: 'iCal Meeting & Event QR', priority: '0.8', changefreq: 'weekly', type: 'Tool' },
+  { loc: 'https://linktoqr.in/#appstore', title: 'App Store & Play Store QR', priority: '0.8', changefreq: 'weekly', type: 'Tool' },
+  { loc: 'https://linktoqr.in/#pdf', title: 'PDF & Document Sharing QR', priority: '0.8', changefreq: 'weekly', type: 'Tool' },
   { loc: 'https://textsnap-ai-ocr.onrender.com/', title: 'TextSnap AI OCR - Image to Text', priority: '0.9', changefreq: 'weekly', type: 'AI Partner' },
-  { loc: 'https://linktoqr.com/#scanner', title: 'Camera QR Code Scanner', priority: '0.7', changefreq: 'monthly', type: 'Utility' },
-  { loc: 'https://linktoqr.com/#features', title: 'Vector SVG Customization Features', priority: '0.7', changefreq: 'monthly', type: 'Info' },
-  { loc: 'https://linktoqr.com/#use-cases', title: 'Industry Use Cases & Spotlight', priority: '0.7', changefreq: 'monthly', type: 'Info' },
-  { loc: 'https://linktoqr.com/#faq', title: 'FAQ & SEO Knowledge Base', priority: '0.6', changefreq: 'monthly', type: 'Info' },
+  { loc: 'https://linktoqr.in/#scanner', title: 'Camera QR Code Scanner', priority: '0.7', changefreq: 'monthly', type: 'Utility' },
+  { loc: 'https://linktoqr.in/#features', title: 'Vector SVG Customization Features', priority: '0.7', changefreq: 'monthly', type: 'Info' },
+  { loc: 'https://linktoqr.in/#use-cases', title: 'Industry Use Cases & Spotlight', priority: '0.7', changefreq: 'monthly', type: 'Info' },
+  { loc: 'https://linktoqr.in/#faq', title: 'FAQ & SEO Knowledge Base', priority: '0.6', changefreq: 'monthly', type: 'Info' },
 ];
 
 export const SitemapModal: React.FC<SitemapModalProps> = ({ isOpen, onClose }) => {
