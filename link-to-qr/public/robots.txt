@@ -1,4 +1,6 @@
+# https://www.robotstxt.org/robotstxt.html
 User-agent: *
 Allow: /
 
-Sitemap: https://linktoqr.com/sitemap.xml
+# Sitemap Location
+Sitemap: https://linktoqr.in/sitemap.xml
