@@ -108,17 +108,17 @@ export const QrGeneratorCard: React.FC<QrGeneratorCardProps> = ({ onOpenScanModa
     if (cachedDraft) return cachedDraft;
     return {
       type: 'url',
-      url: 'https://linktoqr.com',
+      url: 'https://linktoqr.in',
       text: 'Welcome to Link to QR',
       wifi: { ssid: 'Guest_WiFi_5G', password: 'securepassword123', encryption: 'WPA', hidden: false },
       vcard: { firstName: '', lastName: '', organization: '', title: '', mobile: '', email: '', website: '', address: '' },
-      email: { address: 'hello@linktoqr.com', subject: 'Inquiry from QR Code', body: 'Hi team, I would like to get more information...' },
+      email: { address: 'hello@linktoqr.in', subject: 'Inquiry from QR Code', body: 'Hi team, I would like to get more information...' },
       phone: '+1 555-019-2834',
       sms: { phone: '+1 555-019-2834', message: 'Hi! Let\'s connect.' },
       event: { title: 'SaaS Summit 2026', location: 'San Francisco, CA', startDate: '2026-09-15T09:00', endDate: '2026-09-15T17:00', description: 'Annual SaaS Conference' },
       appstore: { iosUrl: 'https://apps.apple.com/app/id123456789', androidUrl: 'https://play.google.com/store/apps/details?id=com.app' },
       pdfName: 'Company-Overview-2026.pdf',
-      pdfUrl: 'https://linktoqr.com/doc/company-overview.pdf',
+      pdfUrl: 'https://linktoqr.in/doc/company-overview.pdf',
       // Customization & Styles
       dotStyle: 'rounded',
       eyeStyle: 'rounded',
