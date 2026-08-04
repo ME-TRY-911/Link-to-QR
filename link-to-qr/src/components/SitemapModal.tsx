@@ -18,7 +18,6 @@ const SITEMAP_URLS = [
   { loc: 'https://linktoqr.in/#event', title: 'iCal Meeting & Event QR', priority: '0.8', changefreq: 'weekly', type: 'Tool' },
   { loc: 'https://linktoqr.in/#appstore', title: 'App Store & Play Store QR', priority: '0.8', changefreq: 'weekly', type: 'Tool' },
   { loc: 'https://linktoqr.in/#pdf', title: 'PDF & Document Sharing QR', priority: '0.8', changefreq: 'weekly', type: 'Tool' },
-  { loc: 'https://textsnap-ai-ocr.onrender.com/', title: 'TextSnap AI OCR - Image to Text', priority: '0.9', changefreq: 'weekly', type: 'AI Partner' },
   { loc: 'https://linktoqr.in/#scanner', title: 'Camera QR Code Scanner', priority: '0.7', changefreq: 'monthly', type: 'Utility' },
   { loc: 'https://linktoqr.in/#features', title: 'Vector SVG Customization Features', priority: '0.7', changefreq: 'monthly', type: 'Info' },
   { loc: 'https://linktoqr.in/#use-cases', title: 'Industry Use Cases & Spotlight', priority: '0.7', changefreq: 'monthly', type: 'Info' },
