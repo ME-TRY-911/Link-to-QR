@@ -21,6 +21,7 @@ const SITEMAP_URLS = [
   { loc: 'https://linktoqr.in/#scanner', title: 'Camera QR Code Scanner', priority: '0.7', changefreq: 'monthly', type: 'Utility' },
   { loc: 'https://linktoqr.in/#features', title: 'Vector SVG Customization Features', priority: '0.7', changefreq: 'monthly', type: 'Info' },
   { loc: 'https://linktoqr.in/#use-cases', title: 'Industry Use Cases & Spotlight', priority: '0.7', changefreq: 'monthly', type: 'Info' },
+  { loc: 'https://linktoqr.in/#qr-guide', title: 'Complete QR Code SEO Guide', priority: '0.8', changefreq: 'weekly', type: 'Guide' },
   { loc: 'https://linktoqr.in/#faq', title: 'FAQ & SEO Knowledge Base', priority: '0.6', changefreq: 'monthly', type: 'Info' },
 ];
 
