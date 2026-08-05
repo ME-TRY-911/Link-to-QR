@@ -7,6 +7,7 @@ import { FeaturesSection } from './components/FeaturesSection';
 import { HowItWorks } from './components/HowItWorks';
 import { UseCasesSection } from './components/UseCasesSection';
 import { RelatedToolsSection } from './components/RelatedToolsSection';
+import { SeoContentSection } from './components/SeoContentSection';
 import { FaqSection } from './components/FaqSection';
 import { CtaBanner } from './components/CtaBanner';
 import { Footer } from './components/Footer';
@@ -155,6 +156,9 @@ export default function App() {
           onOpenScanner={() => handleOpenScanner()}
           onScrollToGenerator={handleScrollToGenerator}
         />
+
+        {/* Comprehensive SEO Knowledge Base & Guide */}
+        <SeoContentSection />
 
         {/* FAQ Accordion Section */}
         <FaqSection />
