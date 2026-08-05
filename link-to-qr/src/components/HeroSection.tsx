@@ -33,7 +33,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenScanModal, curre
 
           {/* Headline */}
           <h1 className="font-heading font-extrabold text-4xl sm:text-5xl lg:text-6xl text-slate-900 dark:text-white tracking-tight leading-[1.1]">
-            Generate QR <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-blue-500">Codes in Seconds</span>
+            Free Custom <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-blue-500">QR Code Generator</span> with Logo
           </h1>
 
           {/* Subheading */}
