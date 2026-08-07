@@ -22,6 +22,7 @@ import { User } from './types';
 import { auth, syncUserProfile, logoutFirebase } from './lib/firebase';
 import { onAuthStateChanged } from 'firebase/auth';
 
+
 export default function App() {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
 
