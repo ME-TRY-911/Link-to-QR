@@ -17,7 +17,7 @@ import {
   QrCode
 } from 'lucide-react';
 
-export const SeoContentSection: React.FC = () => {
+export const SeocontentSection: React.FC = () => {
   const [isExpanded, setIsExpanded] = useState<boolean>(true);
 
   return (
